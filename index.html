@@ -99,8 +99,7 @@ nav.scrolled{background:rgba(12,13,9,.88);backdrop-filter:blur(24px);-webkit-bac
 /* ── HERO ── */
 .hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:7rem 0 5rem}
 #hero-canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hero-inner{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;width:100%;position:relative;z-index:1}
-@media(min-width:900px){.hero-inner{grid-template-columns:1fr 340px;gap:4.5rem}}
+.hero-inner{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;width:100%;position:relative;z-index:1;max-width:720px}
 .hero-ey{display:flex;align-items:center;gap:10px;margin-bottom:1.6rem;opacity:0;transform:translateY(18px)}
 .ey-dot{width:6px;height:6px;background:var(--leather);border-radius:50%;flex-shrink:0;animation:pulse-dot 2.5s ease-in-out infinite}
 @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(149,65,48,.5)}50%{box-shadow:0 0 0 6px rgba(149,65,48,0)}}
@@ -602,12 +601,11 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
   <a href="#hero" class="nav-logo">PB</a>
   <ul class="nav-links">
     <li><a href="#about" class="nl">About</a></li>
-    <li><a href="#projects" class="nl">Work</a></li>
     <li><a href="#lifestyle" class="nl">Process</a></li>
     <li><a href="#skills" class="nl">Skills</a></li>
     <li><a href="#contact" class="nl">Contact</a></li>
   </ul>
-  <a href="mailto:parhambayat1382@gmail.com" class="nav-cta">Let's Talk</a>
+  <a href="https://wa.me/96898983134" target="_blank" rel="noopener" class="nav-cta">Let's Talk</a>
 </nav>
 
 <!-- HERO -->
@@ -631,19 +629,13 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
           <span class="rpill">Automation Specialist</span>
           <span class="rpill">Creative Thinker</span>
         </div>
-        <p class="hero-tag" id="htag">Building digital experiences that feel as good as a perfectly pulled espresso.</p>
+        <p class="hero-tag" id="htag">Building digital experiences that feel thoughtful, polished, and effortless.</p>
         <p class="hero-bio" id="hbio">I bridge the worlds of specialty coffee, AI technology, and creative design. From crafting complex workflow automations to training baristas — I bring the same precision and passion to everything I build.</p>
         <div class="ctas" id="hctas">
-          <a href="#projects" class="btn btn-solid">View My Work <svg class="ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg></a>
+          <a href="https://github.com/parhambayat" target="_blank" rel="noopener" class="btn btn-solid">View My Work <svg class="ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
           <a href="#contact" class="btn btn-out">Get In Touch</a>
           <a href="https://github.com/parhambayat" target="_blank" rel="noopener" class="btn btn-out">GitHub <svg class="ico" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
         </div>
-      </div>
-      <div class="hero-photo-wrap" id="hphoto">
-        <figure class="hero-photo">
-          <img src="images/hero.jpg" alt="Parham Bayat" width="340" height="453" fetchpriority="high" decoding="async">
-          <div class="hero-tag-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:5px;opacity:.75" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>Muscat · 2026</div>
-        </figure>
       </div>
     </div>
   </div>
@@ -682,7 +674,7 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
       <span class="sh-n">01</span><span class="sh-l"></span><span class="sh-t">About Me</span>
     </div>
     <div>
-      <h2 class="about-h rv">Where <em>craft</em> meets<br>technology &amp; great <em>coffee</em></h2>
+      <h2 class="about-h rv">Where <em>craft</em> meets<br>technology</h2>
       <p class="about-p rv">I'm a multidisciplinary creative from Muscat, Oman. My journey started behind the espresso machine — mastering the art of specialty coffee — and evolved into building AI-powered digital products that automate the complexities of modern business.</p>
       <p class="about-p rv">Today I work at the intersection of design, artificial intelligence, and the coffee industry. Whether it's designing a brand identity for a café, building an automated workflow, or training the next generation of baristas — I bring the same obsessive attention to detail to every project.</p>
       <div class="stats-row rv">
@@ -700,54 +692,6 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════
-     PROJECTS — MUSIC PORTFOLIO STYLE
-     ═══════════════════════════════════════════════ -->
-<section id="projects">
-
-  <!-- Full-bleed background image (swaps on hover) -->
-  <div class="mp-bg" id="mp-bg"></div>
-
-  <!-- Corner elements -->
-  <div class="mp-corners" aria-hidden="true">
-    <div class="mp-corner mp-tl">
-      <div class="mp-square"></div>
-      <span style="font-family:var(--disp);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--creamf)">Selected Work</span>
-    </div>
-    <nav class="mp-corner mp-tr" style="pointer-events:all">
-      <a href="https://github.com/parhambayat" target="_blank" rel="noopener">GitHub</a>
-      <span style="color:rgba(240,231,194,.2)">|</span>
-      <a href="mailto:parhambayat1382@gmail.com">Email</a>
-      <span style="color:rgba(240,231,194,.2)">|</span>
-      <a href="https://instagram.com/lazyprhm" target="_blank" rel="noopener">Instagram</a>
-    </nav>
-    <div class="mp-corner mp-bl">23.5880° N, 58.3829° E</div>
-    <time class="mp-corner mp-br" id="mp-time">--:-- --</time>
-  </div>
-
-  <!-- Content -->
-  <div class="wrap" style="position:relative;z-index:2">
-
-    <!-- Section num label (visible only on mobile, corners cover desktop) -->
-    <div class="sh rv" style="margin-bottom:2.5rem">
-      <span class="sh-n">02</span><span class="sh-l"></span><span class="sh-t">Selected Work</span>
-    </div>
-
-    <!-- Column headers -->
-    <div class="mp-head rv">
-      <span>Project</span>
-      <span>Type</span>
-      <span>Stack</span>
-      <span>Client</span>
-      <span style="text-align:right">Year</span>
-    </div>
-
-    <!-- Project rows — built by JS -->
-    <ul class="mp-list" id="mp-list" role="list"></ul>
-
   </div>
 </section>
 
@@ -875,7 +819,7 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
     <h2 class="contact-h rv">Let's<br><span class="strk">Build</span><br>Something.</h2>
     <div class="ct-grid">
       <div class="ct-links rv">
-        <a href="tel:+96898983134" class="ct-item">
+        <a href="https://wa.me/96898983134" target="_blank" rel="noopener" class="ct-item">
           <div class="ct-left"><div class="ct-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5 19.79 19.79 0 0 1 1.6 5.05 2 2 0 0 1 3.57 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><span class="ct-lbl">Phone / WhatsApp</span><span class="ct-val">+968 98983134</span></div></div>
           <span class="ct-arr"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
         </a>
@@ -883,8 +827,8 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
           <div class="ct-left"><div class="ct-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><div><span class="ct-lbl">Email</span><span class="ct-val">parhambayat1382@gmail.com</span></div></div>
           <span class="ct-arr"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
         </a>
-        <a href="https://www.linkedin.com/in/parhambayat" target="_blank" rel="noopener" class="ct-item">
-          <div class="ct-left"><div class="ct-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></div><div><span class="ct-lbl">LinkedIn</span><span class="ct-val">linkedin.com/in/parhambayat</span></div></div>
+        <a href="https://www.linkedin.com/in/parham-bayat" target="_blank" rel="noopener" class="ct-item">
+          <div class="ct-left"><div class="ct-ico"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></div><div><span class="ct-lbl">LinkedIn</span><span class="ct-val">linkedin.com/in/parham-bayat</span></div></div>
           <span class="ct-arr"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
         </a>
         <a href="https://github.com/parhambayat" target="_blank" rel="noopener" class="ct-item">
@@ -923,7 +867,7 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
       <div class="foot-copy">© 2026 · Built with passion &amp; caffeine</div>
       <div class="foot-links">
         <a href="https://github.com/parhambayat" class="fl" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/parhambayat" class="fl" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/parham-bayat" class="fl" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://instagram.com/lazyprhm" class="fl" target="_blank" rel="noopener">Instagram</a>
         <a href="mailto:parhambayat1382@gmail.com" class="fl">Email</a>
         <a href="tel:+96898983134" class="fl">Call</a>
@@ -943,393 +887,6 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
 <script>
 (function(){
 'use strict';
-
-/* ════════════════════════════════════════════════
-   GITHUB PROJECTS — live from parhambayat/repos
-   ════════════════════════════════════════════════ */
-var GITHUB_USER='parhambayat';
-var PROJECTS=[];
-var mpInitialized=false;
-
-function formatRepoName(name){
-  return name.replace(/-+$/,'').replace(/-/g,' ').toUpperCase();
-}
-
-function inferProjectType(repo){
-  var n=repo.name.toLowerCase();
-  var d=(repo.description||'').toLowerCase();
-  if(n.indexOf('game')>-1||d.indexOf('game')>-1||d.indexOf('arcade')>-1) return 'GAME · WEB';
-  if(d.indexOf('ai')>-1||n.indexOf('ai')>-1) return 'AI · APP';
-  if(d.indexOf('coffee')>-1||n.indexOf('coffee')>-1||n.indexOf('lounge')>-1||n.indexOf('brew')>-1||n.indexOf('mahaseel')>-1) return 'COFFEE · WEB';
-  if(n.indexOf('portfolio')>-1) return 'PORTFOLIO';
-  if(repo.language==='TypeScript'||repo.language==='JavaScript') return 'WEB APP';
-  return 'WEB DESIGN';
-}
-
-function inferProjectStack(repo){
-  var parts=[];
-  if(repo.language) parts.push(repo.language.toUpperCase());
-  if(repo.topics&&repo.topics.length){
-    repo.topics.slice(0,2).forEach(function(t){ parts.push(t.toUpperCase()); });
-  }
-  if(!parts.length) parts.push('GITHUB');
-  var s=parts.join(' + ');
-  return s.length>34?s.slice(0,31)+'…':s;
-}
-
-function inferProjectClient(repo){
-  if(repo.homepage) return 'LIVE · DEPLOYED';
-  if(repo.fork) return 'FORK';
-  return 'OPEN SOURCE';
-}
-
-function repoPreviewImage(repo){
-  return 'https://opengraph.githubassets.com/1/'+GITHUB_USER+'/'+encodeURIComponent(repo.name);
-}
-
-function mapGitHubRepo(repo){
-  return {
-    name:formatRepoName(repo.name),
-    type:inferProjectType(repo),
-    stack:inferProjectStack(repo),
-    client:inferProjectClient(repo),
-    year:String(new Date(repo.created_at).getFullYear()),
-    image:repoPreviewImage(repo),
-    link:repo.homepage||repo.html_url,
-    github:repo.html_url,
-    stars:repo.stargazers_count||0
-  };
-}
-
-function showProjectsLoading(){
-  var list=document.getElementById('mp-list');
-  if(!list) return;
-  list.innerHTML='<li class="mp-item mp-loading"><span class="mp-col mp-name">Loading GitHub projects…</span></li>';
-}
-
-function showProjectsError(){
-  var list=document.getElementById('mp-list');
-  if(!list) return;
-  list.innerHTML='<li class="mp-item mp-loading"><span class="mp-col mp-name">Could not load GitHub — <a href="https://github.com/'+GITHUB_USER+'" target="_blank" rel="noopener" style="color:var(--leather2)">view profile</a></span></li>';
-}
-
-function revealProjectRows(){
-  if(typeof gsap==='undefined') return;
-  document.querySelectorAll('#mp-list .rv').forEach(function(el){
-    gsap.to(el,{opacity:1,y:0,duration:.8,ease:'power3.out',
-      scrollTrigger:{trigger:el,start:'top 88%',once:true}});
-  });
-}
-
-function buildProjectList(){
-  var list=document.getElementById('mp-list');
-  if(!list) return;
-  list.innerHTML='';
-  PROJECTS.forEach(function(p,idx){
-    var li=document.createElement('li');
-    li.className='mp-item rv';
-    li.setAttribute('data-idx',idx);
-    li.setAttribute('data-image',p.image);
-    li.setAttribute('role','link');
-    li.setAttribute('tabindex','0');
-    li.setAttribute('aria-label',p.name+' — open project');
-
-    var thumb='<div class="mp-thumb" style="background-image:url('+p.image+')"></div>';
-    var info=
-      '<div class="mp-info">'+
-        '<span class="mp-col mp-name" data-field="name">'+p.name+'</span>'+
-        '<span class="mp-col mp-type" data-field="type">'+p.type+'</span>'+
-        '<span class="mp-col mp-stack" data-field="stack">'+p.stack+'</span>'+
-      '</div>';
-    var desktop=
-      '<span class="mp-col mp-client" data-field="client">'+p.client+'</span>'+
-      '<span class="mp-col mp-year"   data-field="year">'+p.year+'</span>';
-
-    li.innerHTML=thumb+info+desktop+'<span class="mp-arr" aria-hidden="true">'+ICON_EXT+'</span>';
-
-    li.querySelectorAll('[data-field]').forEach(function(span,i){
-      span._sid='mp-'+idx+'-'+i;
-      span._orig=span.textContent;
-    });
-
-    list.appendChild(li);
-  });
-  PROJECTS.forEach(function(p){ var img=new Image(); img.src=p.image; });
-  revealProjectRows();
-}
-
-function loadGitHubProjects(){
-  showProjectsLoading();
-  fetch('https://api.github.com/users/'+GITHUB_USER+'/repos?per_page=100&sort=updated&type=owner',{
-    headers:{'Accept':'application/vnd.github+json'}
-  })
-  .then(function(res){
-    if(!res.ok) throw new Error('GitHub API '+res.status);
-    return res.json();
-  })
-  .then(function(repos){
-    PROJECTS=repos
-      .filter(function(r){
-        return !r.fork&&!r.archived&&r.name!=='happy-birthday-yoona';
-      })
-      .map(mapGitHubRepo);
-    if(!PROJECTS.length){ showProjectsError(); return; }
-    buildProjectList();
-    initMusicPortfolio();
-  })
-  .catch(function(){ showProjectsError(); });
-}
-
-/* ════════════════════════════════════════════════
-   SCRAMBLE TEXT (vanilla — no Club GSAP needed)
-   ════════════════════════════════════════════════ */
-var CHARS='qwerty1337h@ck3r!#$%^&*ABCXYZ';
-var ICON_EXT='<svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>';
-var _scrambleTimers={};
-
-function scramble(el,finalText,durationMs){
-  if(_scrambleTimers[el._sid]) clearInterval(_scrambleTimers[el._sid]);
-  durationMs=durationMs||700;
-  var steps=Math.floor(durationMs/36);
-  var step=0;
-  _scrambleTimers[el._sid]=setInterval(function(){
-    step++;
-    var progress=step/steps;
-    var revealed=Math.floor(progress*finalText.length);
-    var out='';
-    for(var i=0;i<finalText.length;i++){
-      if(i<revealed){
-        out+=finalText[i];
-      } else {
-        out+=CHARS[Math.floor(Math.random()*CHARS.length)];
-      }
-    }
-    el.textContent=out;
-    if(step>=steps){
-      clearInterval(_scrambleTimers[el._sid]);
-      el.textContent=finalText;
-    }
-  },36);
-}
-
-function stopScramble(el,finalText){
-  if(_scrambleTimers[el._sid]) clearInterval(_scrambleTimers[el._sid]);
-  el.textContent=finalText;
-}
-
-/* ════════════════════════════════════════════════
-   BUILD PROJECT ROWS — called after GitHub fetch
-   ════════════════════════════════════════════════ */
-
-/* ════════════════════════════════════════════════
-   MUSIC PORTFOLIO LOGIC
-   ════════════════════════════════════════════════ */
-function initMusicPortfolio(){
-  if(mpInitialized) return;
-  var bg=document.getElementById('mp-bg');
-  var list=document.getElementById('mp-list');
-  if(!bg||!list) return;
-  mpInitialized=true;
-
-  var activeIdx=-1;
-  var idleTimer=null;
-  var idleAnim=null;
-  var isIdle=false;
-  var items=[];
-
-  /* Gather items after build */
-  function refreshItems(){
-    items=Array.from(list.querySelectorAll('.mp-item'));
-  }
-
-  /* ── IDLE ANIMATION ── */
-  function startIdle(){
-    if(isIdle) return;
-    isIdle=true;
-    var i=0;
-    function tick(){
-      if(!isIdle) return;
-      refreshItems();
-      items.forEach(function(el,idx){
-        el.classList.add('mp-idle');
-        setTimeout(function(){
-          if(isIdle) el.classList.remove('mp-idle');
-        },(items.length*60)+idx*55);
-      });
-      idleAnim=setTimeout(tick,(items.length*60*2)+1800);
-    }
-    tick();
-  }
-
-  function stopIdle(){
-    isIdle=false;
-    clearTimeout(idleAnim);
-    refreshItems();
-    items.forEach(function(el){ el.classList.remove('mp-idle'); });
-  }
-
-  function queueIdle(){
-    clearTimeout(idleTimer);
-    idleTimer=setTimeout(function(){
-      if(activeIdx===-1) startIdle();
-    },4000);
-  }
-
-  /* ── MOBILE DETECTION ── */
-  function isMobile(){ return window.innerWidth < 768; }
-
-  /* ── BACKGROUND SWAP ──
-     Desktop : floating portrait (scale-in from center)
-     Mobile  : full-section cover at low opacity          */
-  function showBg(imageUrl){
-    if(!imageUrl) return;
-    bg.style.backgroundImage='url('+imageUrl+')';
-    if(isMobile()){
-      /* CSS already sets inset:0/100% via media query —
-         just drive opacity here                         */
-      bg.style.transition='opacity .45s ease';
-      bg.style.opacity='.35';
-    } else {
-      bg.style.transition='none';
-      bg.style.transform='translate(-50%,-50%) scale(1.14)';
-      requestAnimationFrame(function(){
-        requestAnimationFrame(function(){
-          bg.style.transition='opacity .6s ease,transform .85s cubic-bezier(0.25,0.46,0.45,0.94)';
-          bg.style.opacity='1';
-          bg.style.transform='translate(-50%,-50%) scale(1)';
-        });
-      });
-    }
-  }
-
-  function hideBg(){
-    if(isMobile()){
-      bg.style.transition='opacity .4s ease';
-      bg.style.opacity='0';
-    } else {
-      bg.style.transition='opacity .5s ease,transform .5s ease';
-      bg.style.opacity='0';
-      bg.style.transform='translate(-50%,-50%) scale(1.06)';
-    }
-  }
-
-  /* ── HOVER HANDLERS ── */
-  function onEnter(idx){
-    stopIdle();
-    clearTimeout(idleTimer);
-    if(idx===activeIdx) return;
-    activeIdx=idx;
-    refreshItems();
-    items.forEach(function(el,i){
-      if(i===idx){
-        el.classList.add('mp-active');
-        el.querySelectorAll('[data-field]').forEach(function(span){
-          scramble(span,span._orig,680);
-        });
-      } else {
-        el.classList.remove('mp-active');
-        el.style.opacity='.28';
-      }
-    });
-    showBg(PROJECTS[idx].image);
-  }
-
-  function onLeaveItem(){/* handled by container leave */}
-
-  function onLeaveContainer(){
-    activeIdx=-1;
-    refreshItems();
-    items.forEach(function(el){
-      el.classList.remove('mp-active');
-      el.style.opacity='';
-      el.querySelectorAll('[data-field]').forEach(function(span){
-        stopScramble(span,span._orig);
-      });
-    });
-    hideBg();
-    queueIdle();
-  }
-
-  /* ── ATTACH EVENTS ── */
-
-  /* Desktop — mouse */
-  list.addEventListener('mouseleave', onLeaveContainer);
-  list.addEventListener('mouseover', function(e){
-    var li = e.target.closest('.mp-item');
-    if(!li) return;
-    var idx = +li.getAttribute('data-idx');
-    if(!isNaN(idx)) onEnter(idx);
-  });
-
-  /* Mobile / iOS — touch
-     First tap  : activate row (show image + scramble)
-     Second tap : follow the link
-     Tap outside: deactivate                            */
-  var lastTouched = -1;
-  list.addEventListener('touchstart', function(e){
-    var li = e.target.closest('.mp-item');
-    if(!li) return;
-    var idx = +li.getAttribute('data-idx');
-    if(isNaN(idx)) return;
-
-    if(lastTouched === idx){
-      /* second tap → navigate */
-      var url = PROJECTS[idx] && PROJECTS[idx].link;
-      if(url) window.open(url, '_blank', 'noopener');
-      return;
-    }
-    e.preventDefault();
-    lastTouched = idx;
-    onEnter(idx);
-  }, {passive: false});
-
-  /* Tap anywhere outside the list → collapse */
-  document.addEventListener('touchstart', function(e){
-    if(!list.contains(e.target)){
-      lastTouched = -1;
-      onLeaveContainer();
-    }
-  }, {passive: true});
-
-  /* Desktop — click row to open live demo / repo */
-  list.addEventListener('click', function(e){
-    if(window.innerWidth<768) return;
-    var li=e.target.closest('.mp-item');
-    if(!li||li.classList.contains('mp-loading')) return;
-    var idx=+li.getAttribute('data-idx');
-    var url=PROJECTS[idx]&&PROJECTS[idx].link;
-    if(url) window.open(url,'_blank','noopener');
-  });
-
-  /* ── START IDLE ON LOAD ── */
-  setTimeout(function(){
-    refreshItems();
-    queueIdle();
-  }, 1200);
-
-}
-
-/* ════════════════════════════════════════════════
-   CLOCK — bottom-right corner
-   ════════════════════════════════════════════════ */
-(function initClock(){
-  var el=document.getElementById('mp-time');
-  if(!el) return;
-  function tick(){
-    var now=new Date();
-    var fmt=new Intl.DateTimeFormat('en-US',{
-      timeZone:'Asia/Muscat',
-      hour12:true,hour:'numeric',minute:'numeric'
-    });
-    var parts=fmt.formatToParts(now);
-    var h=parts.find(function(p){return p.type==='hour';});
-    var m=parts.find(function(p){return p.type==='minute';});
-    var d=parts.find(function(p){return p.type==='dayPeriod';});
-    el.innerHTML=(h?h.value:'--')+'<span class="time-blink">:</span>'+(m?m.value:'--')+' '+(d?d.value:'');
-  }
-  tick();
-  setInterval(tick,1000);
-})();
 
 /* ════════════════════════════════════════════════
    GSAP SETUP
@@ -1470,9 +1027,7 @@ function initHero(){
     .to('#htag',{opacity:1,y:0,duration:.6,ease:'power3.out'},'-=.3')
     .to('#hbio',{opacity:1,y:0,duration:.6,ease:'power3.out'},'-=.3')
     .to('#hctas',{opacity:1,y:0,duration:.6,ease:'power3.out'},'-=.3')
-    .to('#hphoto',{opacity:1,y:0,duration:.85,ease:'power3.out'},'-=.55')
     .to('#hscroll',{opacity:1,duration:.5,ease:'power2.out'},'-=.2');
-  gsap.to('.hero-photo img',{yPercent:14,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 }
 
 /* ── SCROLL REVEALS ── */
@@ -1681,7 +1236,6 @@ function startAll(){
   initLenis();initCursor();initThree();initNav();
   initHero();initReveals();initCounters();initBars();
   initTimeline();initMag();initCircularGallery();initNavLinks();
-  loadGitHubProjects();
   if(typeof ScrollTrigger!=='undefined'){
     window.addEventListener('load',function(){ ScrollTrigger.refresh(); });
   }
