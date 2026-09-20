@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Public static portfolio — allow full crawl of HTML, CSS, JS, and images
+# Do not disallow assets required for rendering
+
+Sitemap: https://parham-bayat-portfolio.vercel.app/sitemap.xml
