@@ -43,7 +43,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Unbounded:wght@300;400;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- Structured data: Person + WebSite (facts from page content only) -->
+<!--
+  Structured data strategy (accurate to this site only):
+  - Business type: individual freelance professional (personal portfolio), not a storefront.
+  - Qualifying page: homepage only → ProfilePage + Person + WebSite.
+  - NOT used: LocalBusiness (no verified street address / hours), Organization
+    (no separate company entity stated), Service/Product (no dedicated service/product
+    pages), BreadcrumbList (single-page, no breadcrumb UI), Review/AggregateRating
+    (testimonials are not marked up — no invented ratings).
+-->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,15 +63,20 @@
       "name": "Parham Bayat Portfolio",
       "description": "Portfolio of Parham Bayat — AI product builder, web developer, and specialty coffee specialist in Muscat, Oman.",
       "inLanguage": "en",
-      "publisher": {"@id": "https://parham-bayat-portfolio.vercel.app/#person"}
+      "publisher": { "@id": "https://parham-bayat-portfolio.vercel.app/#person" }
     },
     {
       "@type": "Person",
       "@id": "https://parham-bayat-portfolio.vercel.app/#person",
       "name": "Parham Bayat",
       "url": "https://parham-bayat-portfolio.vercel.app/",
-      "image": "https://parham-bayat-portfolio.vercel.app/images/hero.jpg",
-      "email": "mailto:parhambayat1382@gmail.com",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://parham-bayat-portfolio.vercel.app/images/hero.jpg",
+        "contentUrl": "https://parham-bayat-portfolio.vercel.app/images/hero.jpg",
+        "caption": "Parham Bayat"
+      },
+      "email": "parhambayat1382@gmail.com",
       "telephone": "+96898983134",
       "jobTitle": [
         "AI Product Builder",
@@ -77,8 +90,8 @@
         "addressCountry": "OM"
       },
       "areaServed": [
-        {"@type": "Country", "name": "Oman"},
-        {"@type": "Country", "name": "United Arab Emirates"}
+        { "@type": "Country", "name": "Oman" },
+        { "@type": "Country", "name": "United Arab Emirates" }
       ],
       "knowsAbout": [
         "AI automation",
@@ -93,17 +106,34 @@
         "https://www.linkedin.com/in/parham-bayat",
         "https://github.com/parhambayat",
         "https://instagram.com/lazyprhm"
-      ]
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "personal",
+        "telephone": "+96898983134",
+        "email": "parhambayat1382@gmail.com",
+        "availableLanguage": ["English"],
+        "url": "https://parham-bayat-portfolio.vercel.app/#contact"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://parham-bayat-portfolio.vercel.app/#profilepage"
+      }
     },
     {
       "@type": "ProfilePage",
       "@id": "https://parham-bayat-portfolio.vercel.app/#profilepage",
       "url": "https://parham-bayat-portfolio.vercel.app/",
       "name": "Parham Bayat — AI Product Builder, Web Developer & Coffee Specialist in Muscat",
-      "isPartOf": {"@id": "https://parham-bayat-portfolio.vercel.app/#website"},
-      "about": {"@id": "https://parham-bayat-portfolio.vercel.app/#person"},
-      "mainEntity": {"@id": "https://parham-bayat-portfolio.vercel.app/#person"},
-      "inLanguage": "en"
+      "description": "Personal portfolio of Parham Bayat, an AI product builder, web developer, and specialty coffee specialist based in Muscat, Oman.",
+      "isPartOf": { "@id": "https://parham-bayat-portfolio.vercel.app/#website" },
+      "about": { "@id": "https://parham-bayat-portfolio.vercel.app/#person" },
+      "mainEntity": { "@id": "https://parham-bayat-portfolio.vercel.app/#person" },
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://parham-bayat-portfolio.vercel.app/images/hero.jpg"
+      }
     }
   ]
 }
