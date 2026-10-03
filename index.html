@@ -41,7 +41,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Unbounded:wght@300;400;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Non-blocking font CSS: print media swapped to all on load (display=swap already in URL). -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Unbounded:wght@300;400;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Unbounded:wght@300;400;600;700;800;900&family=Syne:wght@400;500;600;700;800&display=swap"></noscript>
 
 <!--
   Structured data strategy (accurate to this site only):
@@ -186,7 +188,8 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
 }
 
 /* ── LOADER ── */
-#loader{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+/* Transparent overlay: branded intro chrome stays, Hero text remains paint-visible for LCP. */
+#loader{position:fixed;inset:0;z-index:9999;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;pointer-events:none}
 #loader-logo{font-family:var(--disp);font-size:13px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--creamd);opacity:0}
 #loader-bar-track{width:200px;height:1px;background:rgba(240,231,194,.1);overflow:hidden}
 #loader-bar{height:100%;width:0%;background:var(--leather)}
@@ -227,19 +230,20 @@ h2.sh-t{margin:0;padding:0;line-height:1;font-size:9px;font-weight:700;color:var
 .hero{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:7rem 0 5rem}
 #hero-canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
 .hero-inner{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;width:100%;position:relative;z-index:1;max-width:720px}
-.hero-ey{display:flex;align-items:center;gap:10px;margin-bottom:1.6rem;opacity:0;transform:translateY(18px)}
+/* Hero copy is paint-visible by default (LCP). Motion is progressive enhancement via GSAP. */
+.hero-ey{display:flex;align-items:center;gap:10px;margin-bottom:1.6rem;opacity:1;transform:none}
 .ey-dot{width:6px;height:6px;background:var(--leather);border-radius:50%;flex-shrink:0;animation:pulse-dot 2.5s ease-in-out infinite}
 @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(149,65,48,.5)}50%{box-shadow:0 0 0 6px rgba(149,65,48,0)}}
 .ey-text{font-family:var(--disp);font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--leather2)}
 .hero-name{font-family:var(--disp);font-size:clamp(50px,9.5vw,112px);font-weight:900;line-height:.88;letter-spacing:-.03em;text-transform:uppercase;margin-bottom:2rem}
-.hero-name .n1{color:var(--cream);display:block;opacity:0;transform:translateY(28px)}
-.hero-name .n2{color:transparent;-webkit-text-stroke:2px var(--leather);display:block;opacity:0;transform:translateY(28px)}
-.hero-roles{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem;opacity:0;transform:translateY(18px)}
+.hero-name .n1{color:var(--cream);display:block;opacity:1;transform:none}
+.hero-name .n2{color:transparent;-webkit-text-stroke:2px var(--leather);display:block;opacity:1;transform:none}
+.hero-roles{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem;opacity:1;transform:none}
 .rpill{font-family:var(--disp);font-size:9px;font-weight:700;letter-spacing:.07em;padding:7px 14px;border:1.5px solid var(--border);border-radius:100px;color:var(--creamf);text-transform:uppercase;transition:border-color .2s,color .2s,background .2s}
 .rpill:hover{border-color:var(--leather);color:var(--cream);background:var(--ldim)}
-.hero-tag{font-family:var(--sans);font-size:clamp(14px,1.8vw,18px);font-weight:500;color:var(--creamd);margin-bottom:1rem;line-height:1.5;opacity:0;transform:translateY(18px)}
-.hero-bio{font-size:13px;line-height:1.9;color:var(--creamd);max-width:480px;margin-bottom:2.5rem;opacity:0;transform:translateY(18px)}
-.ctas{display:flex;gap:12px;flex-wrap:wrap;opacity:0;transform:translateY(18px)}
+.hero-tag{font-family:var(--sans);font-size:clamp(14px,1.8vw,18px);font-weight:500;color:var(--creamd);margin-bottom:1rem;line-height:1.5;opacity:1;transform:none}
+.hero-bio{font-size:13px;line-height:1.9;color:var(--creamd);max-width:480px;margin-bottom:2.5rem;opacity:1;transform:none}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;opacity:1;transform:none}
 .btn{font-family:var(--disp);font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:13px 26px;border-radius:2px;display:inline-flex;align-items:center;gap:8px;transition:all .2s;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
 .btn .ico,.ct-arr .ico,.mp-arr .ico,.life-hint .ico,.hs-txt .ico{display:block;flex-shrink:0;opacity:.85}
 .sk-ico svg,.ct-ico svg{display:block;color:var(--creamd)}
@@ -248,13 +252,13 @@ h2.sh-t{margin:0;padding:0;line-height:1;font-size:9px;font-weight:700;color:var
 .btn-solid:hover{background:var(--leather2);border-color:var(--leather2)}
 .btn-out{border:1.5px solid var(--border);color:var(--creamd);background:transparent}
 .btn-out:hover{border-color:var(--leather);color:var(--cream)}
-.hero-photo-wrap{justify-self:center;width:min(300px,85vw);opacity:0;transform:translateY(28px)}
+.hero-photo-wrap{justify-self:center;width:min(300px,85vw);opacity:1;transform:none}
 @media(min-width:900px){.hero-photo-wrap{justify-self:end;width:100%}}
 .hero-photo{position:relative;border-radius:4px;overflow:hidden;border:1.5px solid var(--border);aspect-ratio:3/4;background:rgba(20,22,14,.6)}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 15%}
 .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(12,13,9,.8));pointer-events:none}
 .hero-tag-badge{position:absolute;bottom:1.5rem;left:1.5rem;z-index:2;font-family:var(--disp);font-size:8px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--creamd);background:rgba(12,13,9,.75);backdrop-filter:blur(8px);padding:6px 12px;border:1px solid var(--borders);border-radius:2px}
-.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:1}
 .hs-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--leather),transparent);animation:scrl 2s ease-in-out infinite}
 @keyframes scrl{0%,100%{transform:scaleY(1);transform-origin:top}50%{transform:scaleY(.3);transform-origin:top}}
 .hs-txt{font-family:var(--disp);font-size:7px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--creamf)}
@@ -1068,13 +1072,16 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
 
 </div><!-- /.pc -->
 
-<!-- CDN Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<!-- CDN Libraries: defer keeps them off the critical render path; order preserved. -->
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
 
 <script>
+/* Inline runs during parse (before deferred libs). Init waits until deferred scripts
+   have executed: DOMContentLoaded, or immediately if the document is already ready. */
+function __bootPortfolio(){
 (function(){
 'use strict';
 
@@ -1242,18 +1249,20 @@ function initNav(){
 }
 
 /* ── HERO ENTRY ── */
+/* Content is already paint-visible (opacity:1). Preserve entrance motion via transform
+   only so LCP is not gated on GSAP/library timing. */
 function initHero(){
   if(typeof gsap==='undefined') return;
-  gsap.set(['.n1','.n2'],{opacity:0,y:28});
-  var tl=gsap.timeline({delay:.15});
-  tl.to('#hey',{opacity:1,y:0,duration:.7,ease:'power3.out'})
-    .to('.n1',{opacity:1,y:0,duration:.75,ease:'power3.out'},'-=.4')
-    .to('.n2',{opacity:1,y:0,duration:.75,ease:'power3.out'},'-=.55')
-    .to('#hro',{opacity:1,y:0,duration:.6,ease:'power3.out'},'-=.35')
-    .to('#htag',{opacity:1,y:0,duration:.6,ease:'power3.out'},'-=.3')
-    .to('#hbio',{opacity:1,y:0,duration:.6,ease:'power3.out'},'-=.3')
-    .to('#hctas',{opacity:1,y:0,duration:.6,ease:'power3.out'},'-=.3')
-    .to('#hscroll',{opacity:1,duration:.5,ease:'power2.out'},'-=.2');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var tl=gsap.timeline({delay:.05});
+  tl.from('#hey',{y:18,duration:.7,ease:'power3.out'},0)
+    .from('.n1',{y:28,duration:.75,ease:'power3.out'},'-=.4')
+    .from('.n2',{y:28,duration:.75,ease:'power3.out'},'-=.55')
+    .from('#hro',{y:18,duration:.6,ease:'power3.out'},'-=.35')
+    .from('#htag',{y:18,duration:.6,ease:'power3.out'},'-=.3')
+    .from('#hbio',{y:18,duration:.6,ease:'power3.out'},'-=.3')
+    .from('#hctas',{y:18,duration:.6,ease:'power3.out'},'-=.3')
+    .from('#hscroll',{y:12,duration:.5,ease:'power2.out'},'-=.2');
 }
 
 /* ── SCROLL REVEALS ── */
@@ -1506,6 +1515,12 @@ function startAll(){
 }
 
 })();
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', __bootPortfolio);
+} else {
+  __bootPortfolio();
+}
 </script>
 </body>
 </html>
