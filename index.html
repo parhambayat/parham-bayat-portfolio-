@@ -191,7 +191,8 @@ button{background:none;border:none;cursor:pointer;font:inherit;color:inherit}
 #loader-bar-track{width:200px;height:1px;background:rgba(240,231,194,.1);overflow:hidden}
 #loader-bar{height:100%;width:0%;background:var(--leather)}
 #loader-counter{font-family:var(--disp);font-size:56px;font-weight:900;color:var(--cream);letter-spacing:-.04em;position:absolute;bottom:3.5rem;right:3.5rem;opacity:0;line-height:1}
-.pc{opacity:0}
+/* Content stays visible under the loader overlay (JS-fail safe). */
+.pc{opacity:1}
 
 /* ── BG ── */
 .bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;
@@ -715,8 +716,16 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
 /* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
+<noscript>
+<style>
+  #loader{display:none!important}
+  body.locking{overflow:visible!important}
+  .hero-ey,.hero-name .n1,.hero-name .n2,.hero-roles,.hero-tag,.hero-bio,.ctas,.hero-photo-wrap,.hero-scroll,.rv,.tl-item{opacity:1!important;transform:none!important;-webkit-text-stroke:initial}
+  .hero-name .n2{color:var(--leather);-webkit-text-stroke:0}
+</style>
+</noscript>
 </head>
-<body class="locking">
+<body>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor" id="cur"></div>
@@ -1060,7 +1069,7 @@ footer{border-top:1px solid var(--borders);padding:3rem 0}
 </div><!-- /.pc -->
 
 <!-- CDN Libraries -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -1082,31 +1091,67 @@ if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
   var bar=document.getElementById('loader-bar');
   var num=document.getElementById('loader-counter');
   var logo=document.getElementById('loader-logo');
-  var pc=document.querySelector('.pc');
+  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var started=false;
   var p=0;
+  var iv=null;
 
-  if(typeof gsap==='undefined'){
-    loader.style.display='none';pc.style.opacity='1';
-    document.body.classList.remove('locking');startAll();return;
+  /* Lock scroll only while the branded overlay is active (JS present). */
+  document.body.classList.add('locking');
+
+  function reveal(){
+    if(started) return;
+    started=true;
+    document.body.classList.remove('locking');
+    startAll();
   }
 
-  gsap.to(logo,{opacity:1,y:0,duration:.7,ease:'power2.out',delay:.2});
-  gsap.to(num,{opacity:1,duration:.4,delay:.3});
+  function hideLoaderInstant(){
+    if(loader) loader.style.display='none';
+    reveal();
+  }
 
-  var iv=setInterval(function(){
-    p=Math.min(p+Math.random()*10+5,100);
+  function exitLoader(){
+    if(!loader||typeof gsap==='undefined'||reduceMotion){
+      hideLoaderInstant();
+      return;
+    }
+    /* Start page/Hero work as the overlay exits — content is already in the DOM under it. */
+    reveal();
+    gsap.to(loader,{yPercent:-100,duration:.7,ease:'power4.inOut',onComplete:function(){
+      loader.style.display='none';
+    }});
+  }
+
+  /* Safety: never leave the page locked if progress stalls. */
+  var safety=setTimeout(function(){
+    if(!started){
+      if(iv!==null){ clearInterval(iv); iv=null; }
+      exitLoader();
+    }
+  },2000);
+
+  if(typeof gsap==='undefined'||reduceMotion){
+    clearTimeout(safety);
+    hideLoaderInstant();
+    return;
+  }
+
+  gsap.to(logo,{opacity:1,y:0,duration:.35,ease:'power2.out'});
+  gsap.to(num,{opacity:1,duration:.25});
+
+  iv=setInterval(function(){
+    p=Math.min(p+Math.random()*24+16,100);
     bar.style.width=p+'%';
     num.textContent=Math.floor(p);
     if(p>=100){
-      clearInterval(iv);num.textContent='100';
-      setTimeout(function(){
-        gsap.to(loader,{yPercent:-100,duration:1,ease:'power4.inOut',onComplete:function(){
-          loader.style.display='none';document.body.classList.remove('locking');
-        }});
-        gsap.to(pc,{opacity:1,duration:.6,delay:.55,ease:'power2.out',onComplete:startAll});
-      },300);
+      clearInterval(iv);
+      iv=null;
+      clearTimeout(safety);
+      num.textContent='100';
+      exitLoader();
     }
-  },80);
+  },45);
 })();
 
 /* ── LENIS ── */
@@ -1275,11 +1320,10 @@ function initCircularGallery(){
   var isMob=window.innerWidth<640;
   var RADIUS=isMob?200:480;
   var angleStep=360/N;
+  var section=document.getElementById('lifestyle');
+  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* preload */
-  ITEMS.forEach(function(it){var i=new Image();i.src=it.image;});
-
-  /* build cards */
+  /* build cards — keep loading="lazy"; do not eager-preload all images */
   var cards=[];
   ITEMS.forEach(function(it,i){
     var angle=angleStep*i;
@@ -1313,6 +1357,8 @@ function initCircularGallery(){
   var autoSpeed=0.018;
   var isScrolling=false;
   var scrollTimer=null;
+  var rafId=null;
+  var running=false;
 
   /* update card opacities each frame */
   function updateCards(){
@@ -1324,14 +1370,49 @@ function initCircularGallery(){
     });
   }
 
-  /* rAF loop — auto-rotate when not scrolling */
-  function tick(){
-    if(!isScrolling) rot+=autoSpeed;
+  function applyRotation(){
     rotor.style.transform='rotateY('+rot+'deg)';
     updateCards();
-    requestAnimationFrame(tick);
   }
-  requestAnimationFrame(tick);
+
+  /* rAF loop — auto-rotate when not scrolling; only while section is visible */
+  function tick(){
+    if(!running) return;
+    if(!isScrolling) rot+=autoSpeed;
+    applyRotation();
+    rafId=requestAnimationFrame(tick);
+  }
+
+  function startLoop(){
+    if(running||reduceMotion) return;
+    running=true;
+    rafId=requestAnimationFrame(tick);
+  }
+
+  function stopLoop(){
+    running=false;
+    if(rafId!==null){
+      cancelAnimationFrame(rafId);
+      rafId=null;
+    }
+  }
+
+  applyRotation();
+
+  if(reduceMotion){
+    /* No continuous auto-rotate; scroll scrub (below) still updates pose. */
+    stopLoop();
+  } else if(section&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      var entry=entries[0];
+      if(!entry) return;
+      if(entry.isIntersecting) startLoop();
+      else stopLoop();
+    },{root:null,rootMargin:'80px 0px',threshold:0.01});
+    io.observe(section);
+  } else {
+    startLoop();
+  }
 
   /* scroll-driven rotation via ScrollTrigger scrub */
   if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){
@@ -1346,14 +1427,15 @@ function initCircularGallery(){
         onUpdate:function(){
           isScrolling=true;
           rot=proxy.rot;
+          /* Apply immediately so scrub works while rAF is paused or reduced-motion is on. */
+          applyRotation();
           clearTimeout(scrollTimer);
           scrollTimer=setTimeout(function(){isScrolling=false;},220);
         }
       }
     });
-  } else {
+  } else if(section){
     /* fallback: native scroll */
-    var section=document.getElementById('lifestyle');
     window.addEventListener('scroll',function(){
       isScrolling=true;
       clearTimeout(scrollTimer);
@@ -1361,6 +1443,7 @@ function initCircularGallery(){
       var h=section.offsetHeight-window.innerHeight;
       var progress=Math.max(0,Math.min(1,(window.scrollY-top)/h));
       rot=progress*360;
+      applyRotation();
       scrollTimer=setTimeout(function(){isScrolling=false;},220);
     },{passive:true});
   }
